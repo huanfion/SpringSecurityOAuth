@@ -9,9 +9,9 @@
         <version>2.1.6.RELEASE</version>
     </parent>
     <groupId>com.huanfion</groupId>
-    <artifactId>Spring-Security</artifactId>
+    <artifactId>SpringSecurityOAuth</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>demo</name>
+    <name>SpringSecurityOAuth</name>
     <description>Demo project for Spring Boot</description>
 
 
@@ -20,8 +20,21 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <java.version>1.8</java.version>
+        <mybatis-plus.version>3.3.2</mybatis-plus.version>
     </properties>
     <dependencies>
+        <!-- mybatis plus 依赖-->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>${mybatis-plus.version}</version>
+        </dependency>
+        <!-- MPG 代码生成依赖-->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generator</artifactId>
+            <version>${mybatis-plus.version}</version>
+        </dependency>
         <!-- 以下是>spring boot依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -44,9 +57,41 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.47</version>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <!--RESTFul接口文档 -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.swagger</groupId>
+                    <artifactId>swagger-annotations</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.swagger</groupId>
+                    <artifactId>swagger-models</artifactId>
+                </exclusion>
+            </exclusions>
+            <version>2.9.2</version>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>1.5.24</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity-engine-core</artifactId>
+            <version>2.1</version>
         </dependency>
     </dependencies>
 </project>

@@ -1,4 +1,4 @@
-package com.huanfion.config;
+package com.huanfion.wms.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

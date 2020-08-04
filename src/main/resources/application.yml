@@ -23,3 +23,11 @@ spring:
       # 等待连接池分配连接的最大时长（毫秒），超过这个时长还没可用的连接则发生SQLException， 缺省:30秒
       connection-timeout: 30000
       connection-test-query: select 1
+
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: auto
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  typeEnumsPackage: com.huanfion.wms.entity.enums

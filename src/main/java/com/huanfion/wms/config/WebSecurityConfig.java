@@ -42,7 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        //将项目中的静态资源路径开放出来
+        //将项目中的静态资源路径开放出来,如果要能访问静态资源需要配置webmvc====registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
         web.ignoring().antMatchers("/static/**");
     }
 
@@ -58,8 +58,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user/page").hasAuthority("ADMIN")
                 .antMatchers("/user/list").hasAuthority("USER")
                 .antMatchers("/r/**").authenticated()//所有/r/**的请求必须认证通过
+                .antMatchers("/login").permitAll()
                 .anyRequest().authenticated()//除了/r/**，其它的请求可以访问
-        .and().formLogin();
+        .and().formLogin()
+        .loginPage("/login")//指定登录页面
+        .loginProcessingUrl("/login")//指定登录处理方法，需要和自定义页面的post路径保持一致
+        ;
                 //.successForwardUrl("/success");//验证成功后跳转的页面
     }
 }

@@ -11,10 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 public class LoginController {
-    @RequestMapping("/login")
-    public String login(){
-        return "login";
-    }
 
     @RequestMapping("/success")
     @ResponseBody

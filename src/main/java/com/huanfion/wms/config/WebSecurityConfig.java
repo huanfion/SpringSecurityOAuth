@@ -3,6 +3,7 @@ package com.huanfion.wms.config;
 import com.huanfion.wms.service.impl.UserServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -25,6 +26,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
+    }
+    // 不声明bean会提示
+    // AuthorizationServerConfig required a bean of type 'org.springframework.security.authentication.AuthenticationManager' that could not be found.
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
     }
 
     @Override
@@ -63,6 +71,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .and().formLogin()
         .loginPage("/login")//指定登录页面
         .loginProcessingUrl("/login")//指定登录处理方法，需要和自定义页面的post路径保持一致
+        .and()
+        .logout()
+        .logoutUrl("/logout")
+        .logoutSuccessUrl("/login")
         ;
                 //.successForwardUrl("/success");//验证成功后跳转的页面
     }

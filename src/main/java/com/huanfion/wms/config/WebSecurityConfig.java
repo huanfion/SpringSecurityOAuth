@@ -66,11 +66,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user/page").hasAuthority("ADMIN")
                 .antMatchers("/user/list").hasAuthority("USER")
                 .antMatchers("/r/**").authenticated()//所有/r/**的请求必须认证通过
-                .antMatchers("/login").permitAll()
+                .antMatchers("/login","/login/form").permitAll()
                 .anyRequest().authenticated()//除了/r/**，其它的请求可以访问
         .and().formLogin()
         .loginPage("/login")//指定登录页面
-        .loginProcessingUrl("/login")//指定登录处理方法，需要和自定义页面的post路径保持一致
+        .loginProcessingUrl("/login/form")//指定登录处理方法，需要和自定义页面的post路径保持一致
         .and()
         .logout()
         .logoutUrl("/logout")

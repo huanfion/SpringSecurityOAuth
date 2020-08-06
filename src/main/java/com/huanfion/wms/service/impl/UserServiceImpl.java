@@ -40,6 +40,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(permissioncode);
             grantedAuthorities.add(grantedAuthority);
         });
-        return new org.springframework.security.core.userdetails.User(username,user.getPassword(),grantedAuthorities);
+        boolean enabled = true; // 可用性 :true:可用 false:不可用
+        boolean accountNonExpired = true; // 过期性 :true:没过期 false:过期
+        boolean credentialsNonExpired = true; // 有效性 :true:凭证有效 false:凭证无效
+        boolean accountNonLocked = true; // 锁定性 :true:未锁定 false:已锁定
+
+        return new org.springframework.security.core.userdetails.User(username,user.getPassword(),enabled,accountNonExpired,credentialsNonExpired,accountNonLocked, grantedAuthorities);
     }
 }

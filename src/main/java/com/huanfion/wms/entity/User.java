@@ -5,10 +5,13 @@ import com.baomidou.mybatisplus.extension.activerecord.Model;
 
 import java.time.LocalDateTime;
 import java.io.Serializable;
+import java.util.Collection;
 
 import com.huanfion.wms.entity.enums.CommonStatus;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 /**
  * <p>
@@ -21,7 +24,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("tb_user")
-public class User extends Model<User> {
+public class User extends Model<User> implements UserDetails {
 
     private static final long serialVersionUID = 1L;
     private Long id;
@@ -103,4 +106,28 @@ public class User extends Model<User> {
         return null;
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }

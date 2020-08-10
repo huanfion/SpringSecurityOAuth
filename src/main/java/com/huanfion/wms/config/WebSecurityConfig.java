@@ -69,8 +69,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login").permitAll()
                 .anyRequest().authenticated()//除了/r/**，其它的请求可以访问
         .and().formLogin()
-        .loginPage("/login")//指定登录页面
-        .loginProcessingUrl("/login")//指定登录处理方法，需要和自定义页面的post路径保持一致
+//        .loginPage("/login")//指定登录页面
+//        .loginProcessingUrl("/login")//指定登录处理方法，需要和自定义页面的post路径保持一致
         .and()
         .logout()
         .logoutUrl("/logout")
